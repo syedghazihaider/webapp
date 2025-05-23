@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE ="gbilgrami/webapp"
+        DOCKER_IMAGE = "gbilgrami/webapp"
         IMAGE_TAG = "1.0.${env.BUILD_NUMBER}"
     }
     stages {
@@ -27,11 +27,12 @@ pipeline {
             }
         }
         stage('Deploy to Kubernetes') {
-  steps {
-    sh """
-    /usr/local/bin/kubectl set image deployment/webapp-deployment webapp=${DOCKER_IMAGE}:${IMAGE_TAG} --record
-    """
-  }
+            steps {
+                sh """
+                /usr/local/bin/kubectl set image deployment/webapp-deployment webapp=${DOCKER_IMAGE}:${IMAGE_TAG} --record
+                """
+            }
+        }
+    }
 }
-
 
