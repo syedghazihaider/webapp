@@ -27,12 +27,11 @@ pipeline {
             }
         }
         stage('Deploy to Kubernetes') {
-            steps {
-                sh """
-                kubectl set image deployment/webapp-deployment webapp=${DOCKER_IMAGE}:${IMAGE_TAG} --record
-                """
-            }
-        }
-    }
+  steps {
+    sh """
+    /usr/local/bin/kubectl set image deployment/webapp-deployment webapp=${DOCKER_IMAGE}:${IMAGE_TAG} --record
+    """
+  }
 }
+
 
